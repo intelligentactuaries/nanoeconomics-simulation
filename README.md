@@ -19,7 +19,7 @@ Compounding Cooperation for Community Wealth."
 
 ## Try It Live
 
-**[Run the simulation on HuggingFace Spaces](https://huggingface.co/spaces/intelligentactuaries/nanoeconomics-simulation)**
+🚀 **[Run the simulation on HuggingFace Spaces](https://huggingface.co/spaces/intelligentactuaries/nanoeconomics-simulation)**
 
 No installation required. Configure community parameters, run simulations,
 explore the risk-return tradeoff interactively in your browser.
