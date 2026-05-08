@@ -58,6 +58,22 @@ def build_community_config(
     )
 
 
+def _animated_fig_to_html(fig: go.Figure, height: int = 480) -> str:
+    """Render an animated Plotly figure as standalone HTML.
+
+    gr.Plot serializes figures via Plotly.react(), which does not preserve
+    animation frames — clicking play in such figures fails silently. Rendering
+    via to_html() uses Plotly.newPlot() and registers frames properly, so the
+    play button and slider work as expected.
+    """
+    return fig.to_html(
+        include_plotlyjs='cdn',
+        full_html=False,
+        default_height=f'{height}px',
+        config={'displayModeBar': False, 'responsive': True},
+    )
+
+
 def _outcome_badge_html(outcome: Outcome, fraction: float) -> str:
     color = OUTCOME_COLORS.get(outcome, "#9ca3af")
     label = outcome.value.upper()
@@ -515,16 +531,15 @@ def run_society_tab(
         result = run_society_with_frames(cfg)
         elapsed = time.time() - t0
 
-        network_fig = _build_society_animation(result)
-        dist_fig = _build_outcome_dist_anim(result)
+        network_html = _animated_fig_to_html(_build_society_animation(result), height=560)
+        dist_html = _animated_fig_to_html(_build_outcome_dist_anim(result), height=360)
         metrics_fig = _build_society_metric_fig(result)
         summary = _society_summary_text(result) + f"\n\n*Simulation time: {elapsed:.1f}s*"
 
-        return network_fig, dist_fig, metrics_fig, summary
+        return network_html, dist_html, metrics_fig, summary
     except Exception as e:
         import traceback
-        empty = go.Figure()
-        return empty, empty, empty, f"**Error:** {e}\n\n```\n{traceback.format_exc()}\n```"
+        return "", "", go.Figure(), f"**Error:** {e}\n\n```\n{traceback.format_exc()}\n```"
 
 
 # ─────────────────────────────────────────────────────────────
@@ -608,10 +623,10 @@ def run_comparison_tab(
         r_a = run_society_with_frames(cfg_a)
         r_b = run_society_with_frames(cfg_b)
 
-        net_a = _build_society_animation(r_a)
-        net_b = _build_society_animation(r_b)
-        dist_a = _build_outcome_dist_anim(r_a)
-        dist_b = _build_outcome_dist_anim(r_b)
+        net_a = _animated_fig_to_html(_build_society_animation(r_a), height=480)
+        net_b = _animated_fig_to_html(_build_society_animation(r_b), height=480)
+        dist_a = _animated_fig_to_html(_build_outcome_dist_anim(r_a), height=360)
+        dist_b = _animated_fig_to_html(_build_outcome_dist_anim(r_b), height=360)
 
         elapsed = time.time() - t0
         comparison = _comparison_table(r_a, r_b)
@@ -624,8 +639,7 @@ def run_comparison_tab(
         return net_a, net_b, dist_a, dist_b, comparison + note
     except Exception as e:
         import traceback
-        empty = go.Figure()
-        return empty, empty, empty, empty, f"**Error:** {e}\n\n```\n{traceback.format_exc()}\n```"
+        return "", "", "", "", f"**Error:** {e}\n\n```\n{traceback.format_exc()}\n```"
 
 
 # ─────────────────────────────────────────────────────────────
@@ -757,8 +771,10 @@ Explore how communities survive, grow, or collapse depending on material capital
                         run_btn_2 = gr.Button("Run Society Simulation", variant="primary")
 
                     with gr.Column(scale=2):
-                        society_network_fig = gr.Plot(label="Animated Society Network")
-                        society_dist_fig = gr.Plot(label="Status Distribution")
+                        gr.Markdown("**Animated Society Network**")
+                        society_network_fig = gr.HTML()
+                        gr.Markdown("**Status Distribution**")
+                        society_dist_fig = gr.HTML()
                         society_metrics_fig = gr.Plot(label="Society Metrics")
                         society_summary = gr.Markdown()
 
@@ -813,11 +829,15 @@ Explore how communities survive, grow, or collapse depending on material capital
 
                 with gr.Row():
                     with gr.Column():
-                        net_a_fig = gr.Plot(label="Society A Network")
-                        dist_a_fig = gr.Plot(label="Society A Status")
+                        gr.Markdown("**Society A Network**")
+                        net_a_fig = gr.HTML()
+                        gr.Markdown("**Society A Status**")
+                        dist_a_fig = gr.HTML()
                     with gr.Column():
-                        net_b_fig = gr.Plot(label="Society B Network")
-                        dist_b_fig = gr.Plot(label="Society B Status")
+                        gr.Markdown("**Society B Network**")
+                        net_b_fig = gr.HTML()
+                        gr.Markdown("**Society B Status**")
+                        dist_b_fig = gr.HTML()
 
                 comparison_table = gr.Markdown()
 
