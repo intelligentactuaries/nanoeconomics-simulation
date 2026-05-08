@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this simulation in your research, please cite it as below."
+type: software
+title: "Nanoeconomics Survival Simulation"
+abstract: >
+  An interactive simulation demonstrating the W(M, T, R) wealth dynamics from
+  the Nanoeconomics framework (Denewade, 2025). Operates at two scales: individual
+  communities and networks of communities forming larger societies.
+authors:
+  - family-names: Denewade
+    given-names: Ali
+    email: research@intelligentactuaries.com
+    orcid: ""
+repository-code: "https://github.com/intelligentactuaries/nanoeconomics-simulation"
+license: Apache-2.0
+version: 0.1.0
+date-released: "2025-01-01"
+keywords:
+  - nanoeconomics
+  - agent-based modeling
+  - survival analysis
+  - community dynamics
+  - social capital
+  - relational capital
+references:
+  - type: article
+    authors:
+      - family-names: Denewade
+        given-names: Ali
+    title: "Nanoeconomics: A Framework for Community-Level Wealth Dynamics"
+    year: 2025
+    notes: "Preprint"
