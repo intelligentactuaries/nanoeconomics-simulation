@@ -686,7 +686,6 @@ mode = st.segmented_control(
     format_func=lambda m: f"{MODE_ICON[m]}  {m}",
     label_visibility="collapsed",
     key="active_mode",
-    use_container_width=True,
 ) or MODE_SINGLE
 
 st.divider()
