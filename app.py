@@ -302,22 +302,32 @@ def _build_society_animation(result: SocietyAnimationResult) -> go.Figure:
         height=480,
         updatemenus=[dict(
             type='buttons',
+            direction='left',
             showactive=False,
-            y=1.05, x=0.5, xanchor='center',
+            x=0.1, y=0,
+            xanchor='right', yanchor='top',
+            pad=dict(r=10, t=87),
             buttons=[
                 dict(label='▶ Play', method='animate',
-                     args=[None, dict(frame=dict(duration=400, redraw=True), fromcurrent=True)]),
+                     args=[None, dict(frame=dict(duration=500, redraw=True),
+                                      fromcurrent=True,
+                                      transition=dict(duration=0, easing='linear'))]),
                 dict(label='⏸ Pause', method='animate',
-                     args=[[None], dict(frame=dict(duration=0), mode='immediate', transition=dict(duration=0))]),
+                     args=[[None], dict(frame=dict(duration=0, redraw=False),
+                                        mode='immediate',
+                                        transition=dict(duration=0))]),
             ],
         )],
         sliders=[dict(
+            active=0,
             steps=[dict(
-                args=[[f.name], dict(frame=dict(duration=0, redraw=True), mode='immediate', transition=dict(duration=0))],
+                args=[[f.name], dict(frame=dict(duration=0, redraw=True),
+                                     mode='immediate',
+                                     transition=dict(duration=0))],
                 label=f.name, method='animate',
             ) for f in anim_frames],
             currentvalue=dict(prefix='', visible=True, xanchor='center'),
-            pad=dict(b=10, t=60), len=0.9, x=0.1, y=0,
+            pad=dict(b=10, t=60), len=0.85, x=0.15, y=0,
         )],
     )
     return fig
@@ -379,14 +389,35 @@ def _build_outcome_dist_anim(result: SocietyAnimationResult) -> go.Figure:
         yaxis=dict(title='% communities', range=[0, 105]),
         template='plotly_white', height=280,
         updatemenus=[dict(
-            type='buttons', showactive=False, y=1.1, x=0.5, xanchor='center',
+            type='buttons',
+            direction='left',
+            showactive=False,
+            x=0.1, y=-0.2,
+            xanchor='right', yanchor='top',
+            pad=dict(r=10, t=10),
             buttons=[
-                dict(label='▶', method='animate',
-                     args=[None, dict(frame=dict(duration=400, redraw=True), fromcurrent=True)]),
-                dict(label='⏸', method='animate',
-                     args=[[None], dict(frame=dict(duration=0), mode='immediate')]),
+                dict(label='▶ Play', method='animate',
+                     args=[None, dict(frame=dict(duration=500, redraw=True),
+                                      fromcurrent=True,
+                                      transition=dict(duration=0, easing='linear'))]),
+                dict(label='⏸ Pause', method='animate',
+                     args=[[None], dict(frame=dict(duration=0, redraw=False),
+                                        mode='immediate',
+                                        transition=dict(duration=0))]),
             ],
         )],
+        sliders=[dict(
+            active=0,
+            steps=[dict(
+                args=[[f.name], dict(frame=dict(duration=0, redraw=True),
+                                     mode='immediate',
+                                     transition=dict(duration=0))],
+                label=f.name, method='animate',
+            ) for f in anim_frames],
+            currentvalue=dict(prefix='', visible=True, xanchor='center'),
+            pad=dict(b=10, t=10), len=0.85, x=0.15, y=-0.2,
+        )],
+        margin=dict(b=80),
     )
     return fig
 
