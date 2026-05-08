@@ -44,7 +44,7 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--tb=short"
+addopts = "--tb=short -p no:launch_ros -p no:launch_testing"
 
 [tool.coverage.run]
 source = ["src"]
