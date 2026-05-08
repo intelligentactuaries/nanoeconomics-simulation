@@ -1,4 +1,8 @@
-"""Top-level simulation orchestration for single communities and societies."""
+"""Top-level simulation orchestration for single communities and societies.
+
+run_single_community() → SingleCommunityRunResult
+run_society()          → SocietyAnimationResult (via animation module)
+"""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
