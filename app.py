@@ -610,7 +610,7 @@ SQFT_ANNOTATION = (
 
 
 def build_ui():
-    with gr.Blocks(title="Nanoeconomics Survival Simulation", theme=gr.themes.Soft()) as demo:
+    with gr.Blocks(title="Nanoeconomics Survival Simulation") as demo:
         gr.Markdown("""
 # Nanoeconomics Survival Simulation
 **W(M, T, R) Community Wealth Dynamics** — Denewade (2025)
@@ -814,4 +814,4 @@ Explore how communities survive, grow, or collapse depending on material capital
 
 if __name__ == "__main__":
     demo = build_ui()
-    demo.launch(server_name="0.0.0.0", server_port=7860, share=False)
+    demo.launch(server_name="0.0.0.0", server_port=7860, share=False, theme=gr.themes.Soft())
