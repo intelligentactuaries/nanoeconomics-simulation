@@ -138,6 +138,22 @@ $$R(t) = w_F \cdot F(t) + w_{Rel} \cdot \text{Rel}(t) + w_S \cdot S(t)$$
 
 All thresholds are user-adjustable.
 
+## Walkthrough Notebook
+
+A 12-cell Jupyter walkthrough is provided at
+[`notebooks/walkthrough.ipynb`](notebooks/walkthrough.ipynb).
+It renders directly on GitHub and on the HuggingFace Space's Files tab.
+
+Contents:
+- The $W(M, T, R)$ Cobb-Douglas formulation and hazard / survival math
+- A high-relational-capital community Monte Carlo run (300 paths, 30 years)
+- High-R vs. low-R comparison under the same shock seed (pandas summary table)
+- A 30-community society simulation (per-community outcome table + total
+  wealth / Gini / migration trajectories)
+- Risk-return tradeoff interpretation
+
+Three matplotlib plots, two pandas tables, math-rich markdown throughout.
+
 ## Methodology
 
 See [docs/methodology.md](docs/methodology.md) for the full theoretical setup,
@@ -145,6 +161,12 @@ parameter calibrations, and observed simulation results.
 
 See [docs/interpretation.md](docs/interpretation.md) for worked examples demonstrating
 the risk-return tradeoff across configurations.
+
+## Research
+
+This work is produced by the **Intelligent Actuaries Research Lab**.
+For questions, collaborations, or feedback, contact
+[research@intelligentactuaries.com](mailto:research@intelligentactuaries.com).
 
 ## Reference
 
