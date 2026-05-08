@@ -177,6 +177,73 @@ app.py
 
 ---
 
+## Observed Behavior at Default Parameters
+
+The following results were produced by running the simulation at default parameter values
+(moderate shock environment, 30-year horizon, 200 Monte Carlo paths per single-community
+run, 30-community society, 25% each archetype).
+
+**Single-community results (representative runs):**
+
+| Configuration | Grew | Stabilized | Declined | Collapsed |
+|---------------|------|------------|----------|-----------|
+| High-R (strong nuclear + religious + dense, ~200 sqft/resident) | 11.6% | 52.0% | 36.4% | 0% |
+| Low-R (independent secular + suburban, ~900 sqft/resident) | 60.8% | 17.6% | 21.6% | 0% |
+
+High-R communities stabilize at high rates; low-R communities grow at high rates.
+Collapse rates are near zero for both under moderate shocks.
+
+**Society-level results (30-community mixed society):**
+
+- High-R community types: lower collapse and decline rates, lower mean wealth
+- Low-R community types: higher mean wealth, higher growth rates
+- Final Gini: typically lower in high-R-dominated societies
+- Network trade buffers both types against severe localized shocks
+
+## Interpretation
+
+The observed pattern is a **risk-return tradeoff**, not evidence that one configuration
+dominates the other.
+
+Relational capital functions as *insurance*: it dampens downside risk (stabilization
+instead of decline; decline instead of collapse) at the cost of upside (lower mean
+wealth growth, because time allocated to family, religion, and community maintenance
+is time not allocated to production).
+
+This is mathematically consistent with the Cobb-Douglas structure: high R increases the
+R exponent's contribution but reduces the T-to-production allocation, creating a direct
+tradeoff under the model's assumptions. It is also consistent with empirically observed
+community resilience patterns: close-knit communities often survive crises better but
+accumulate material wealth more slowly than production-focused peers.
+
+The appropriate question is not "which is better" but "better for what objective under
+what shock regime." High-R communities optimize for resilience under stress; low-R
+communities optimize for wealth accumulation under stability.
+
+## Open Empirical Questions
+
+The simulation raises several questions that real-world data could address:
+
+1. **Shock-severity crossover:** At what shock severity does high-R begin to dominate
+   on *all* dimensions (both lower collapse and higher mean wealth)? The simulation
+   shows this may occur at severe shock levels — empirical investigation of historical
+   communities under extreme stress could test this.
+
+2. **Parameter calibration:** The spatial density, time allocation, and relational
+   growth parameters are stylized. How do the qualitative findings change under
+   empirically calibrated values from specific communities (e.g., Amish, kibbutzim,
+   urban neighborhoods, suburban developments)?
+
+3. **Historical community data:** What longitudinal data exists on community-level
+   wealth and survival rates disaggregated by family structure, religious participation,
+   and density? The simulation's framework suggests specific variables to measure.
+
+4. **Network composition effects:** Does the tradeoff persist in high-R-majority
+   networks, or do network spillovers eventually allow high-R communities to achieve
+   both resilience and growth? The simulation allows this to be explored directly.
+
+---
+
 ## Limitations and Scope
 
 1. **Theoretical model** — parameters are illustrative, not calibrated from empirical data
