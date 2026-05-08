@@ -17,6 +17,8 @@ An interactive simulation exploring the risk-return tradeoffs in community wealt
 dynamics under the W(M, T, R) framework from Denewade (2025) "Nanoeconomics:
 Compounding Cooperation for Community Wealth."
 
+<img width="1166" height="480" alt="GoogleLogoGIF-LARGE" src="https://github.com/user-attachments/assets/26d42ffe-d734-4f1e-ab96-e2c59a0f73d9" />
+
 ## Try It Live
 
 🚀 **[Run the simulation on HuggingFace Spaces](https://huggingface.co/spaces/intelligentactuaries/nanoeconomics-simulation)**
