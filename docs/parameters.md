@@ -1,6 +1,6 @@
 # Parameter Reference
 
-All parameters are user-adjustable via the Gradio UI or programmatically through Pydantic config objects.
+All parameters are user-adjustable via the Streamlit UI or programmatically through Pydantic config objects.
 
 ## Wealth Function Parameters
 

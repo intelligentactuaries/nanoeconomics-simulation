@@ -3,8 +3,8 @@ title: Nanoeconomics Community Survival Simulation
 emoji: 🌍
 colorFrom: yellow
 colorTo: red
-sdk: gradio
-sdk_version: 5.29.0
+sdk: streamlit
+sdk_version: 1.42.0
 app_file: app.py
 pinned: false
 license: apache-2.0
@@ -75,17 +75,32 @@ insurance — it dampens downside risk at the cost of upside.
 
 ```bash
 pip install -r requirements.txt
-python app.py
+streamlit run app.py
 ```
 
-Then open http://localhost:7860 in your browser.
+Then open http://localhost:8501 in your browser.
 
 ## Installation (Development)
 
 ```bash
 uv sync
-uv run python app.py
+uv run streamlit run app.py
 ```
+
+## User Interface
+
+The app uses [Streamlit](https://streamlit.io). All adjustment widgets
+(sliders, switches, run buttons) live in the **left sidebar**, organized by
+mode. The main view shows three tabs as a segmented control at the top:
+
+1. **Single Community** — explore a single community's wealth trajectory,
+   survival curve, M/T/R component dynamics, and outcome distribution.
+2. **Society Mode** — animate a network of 5–100 communities; watch shocks
+   propagate via local/regional/global contagion, R-contagion among
+   neighbors, gravity-model trade, and migration.
+3. **Compare Two Societies** — run two configurations side-by-side under
+   the same shock seed to see how composition and network structure shape
+   collective outcomes.
 
 ## The Wealth Function
 
