@@ -59,18 +59,33 @@ def build_community_config(
 
 
 def _animated_fig_to_html(fig: go.Figure, height: int = 480) -> str:
-    """Render an animated Plotly figure as standalone HTML.
+    """Render an animated Plotly figure inside an iframe.
 
-    gr.Plot serializes figures via Plotly.react(), which does not preserve
-    animation frames — clicking play in such figures fails silently. Rendering
-    via to_html() uses Plotly.newPlot() and registers frames properly, so the
-    play button and slider work as expected.
+    gr.Plot routes figures through Plotly.react(), which discards animation
+    frames. gr.HTML renders raw HTML but injects it the same way innerHTML
+    does — and browsers refuse to execute <script> tags inserted this way,
+    so the Plotly bootstrap never runs and the plot area stays blank.
+
+    Embedding the figure as a full HTML document inside an iframe (via
+    srcdoc) gives the figure its own document context where scripts run
+    normally, so Plotly.newPlot() + addFrames() execute and the play
+    button/slider work end-to-end.
     """
-    return fig.to_html(
+    plotly_html = fig.to_html(
         include_plotlyjs='cdn',
-        full_html=False,
-        default_height=f'{height}px',
+        full_html=True,
         config={'displayModeBar': False, 'responsive': True},
+    )
+    escaped = (
+        plotly_html
+        .replace('&', '&amp;')
+        .replace('"', '&quot;')
+    )
+    return (
+        f'<iframe srcdoc="{escaped}" '
+        f'width="100%" height="{height}" '
+        'frameborder="0" style="border:none; width:100%;" '
+        'sandbox="allow-scripts allow-same-origin"></iframe>'
     )
 
 
