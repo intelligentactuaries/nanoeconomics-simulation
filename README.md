@@ -107,7 +107,9 @@ mode. The main view shows three tabs as a segmented control at the top:
 
 ## The Wealth Function
 
-$$W(t) = M(t)^{\alpha_M} \cdot T(t)^{\alpha_T} \cdot R(t)^{\alpha_R}$$
+```math
+W(t) = M(t)^{\alpha_M} \cdot T(t)^{\alpha_T} \cdot R(t)^{\alpha_R}
+```
 
 where **M** = material/monetary capital, **T** = time allocation, and
 **R** = relational capital parameterized by family structure, religious
@@ -115,7 +117,9 @@ participation, and community spatial density.
 
 **Relational capital:**
 
-$$R(t) = w_F \cdot F(t) + w_{Rel} \cdot \text{Rel}(t) + w_S \cdot S(t)$$
+```math
+R(t) = w_F \cdot F(t) + w_{Rel} \cdot \text{Rel}(t) + w_S \cdot S(t)
+```
 
 - **F(t)** — family bond strength, increases with family time allocation, decays without it
 - **Rel(t)** — religious community participation, specifically buffers meaning-crisis shocks

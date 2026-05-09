@@ -4,7 +4,9 @@
 
 The trade flow between communities $i$ and $j$ follows a gravity specification:
 
-$$\text{Trade}_{ij}(t) = \kappa \cdot \frac{W_i(t) \cdot W_j(t)}{d_{ij}^2 + \varepsilon}$$
+```math
+\text{Trade}_{ij}(t) = \kappa \cdot \frac{W_i(t) \cdot W_j(t)}{d_{ij}^2 + \varepsilon}
+```
 
 **Origin:** Tinbergen (1962) proposed the gravity model for international trade, observing that trade flows are proportional to the product of national incomes and inversely proportional to distance squared. The specification has since accumulated strong empirical support.
 
@@ -46,7 +48,9 @@ References:
 
 The relational capital contagion mechanism models social learning and behavioral diffusion:
 
-$$\Delta R_i^{\text{contagion}} = \alpha_c \cdot (\bar{R}_{\text{neighbors},i} - R_i) \cdot \Delta t$$
+```math
+\Delta R_i^{\text{contagion}} = \alpha_c \cdot (\bar{R}_{\text{neighbors},i} - R_i) \cdot \Delta t
+```
 
 Communities with high-R neighbors gradually adopt higher-R behaviors (family formation, religious practice, community investment). Communities with low-R neighbors face downward pressure.
 
