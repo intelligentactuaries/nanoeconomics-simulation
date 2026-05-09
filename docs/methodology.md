@@ -6,7 +6,9 @@
 
 The core quantity is the **Cobb-Douglas wealth function**:
 
-$$W(t) = M(t)^{\alpha_M} \cdot T(t)^{\alpha_T} \cdot R(t)^{\alpha_R}$$
+```math
+W(t) = M(t)^{\alpha_M} \cdot T(t)^{\alpha_T} \cdot R(t)^{\alpha_R}
+```
 
 with $\alpha_M + \alpha_T + \alpha_R = 1$. Default values: $\alpha_M = 0.4$, $\alpha_T = 0.3$, $\alpha_R = 0.3$.
 
@@ -16,7 +18,9 @@ The choice of Cobb-Douglas (vs. additive) is deliberate: **zero in any dimension
 
 M grows through productive time allocation and decays through maintenance:
 
-$$\frac{dM}{dt} = r_M \cdot t_{\text{prod}} \cdot M - d_M \cdot M + \text{trade boost}$$
+```math
+\frac{dM}{dt} = r_M \cdot t_{\text{prod}} \cdot M - d_M \cdot M + \text{trade boost}
+```
 
 - $r_M = 0.04$ (4% annual growth from productive time)
 - $d_M = 0.01$ (1% annual maintenance drain)
@@ -38,13 +42,17 @@ Time is allocated across five activities:
 
 Allocations sum to 1 (enforced by normalization). The T component used in W is:
 
-$$T_{\text{eff}} = t_{\text{prod}} + 0.3 \cdot t_{\text{leisure}}$$
+```math
+T_{\text{eff}} = t_{\text{prod}} + 0.3 \cdot t_{\text{leisure}}
+```
 
 capturing that leisure partially restores productive capacity.
 
 ### Relational Capital R(t)
 
-$$R(t) = \frac{w_F \cdot F(t) + w_{Rel} \cdot \text{Rel}(t) + w_S \cdot S(d)}{w_F + w_{Rel} + w_S}$$
+```math
+R(t) = \frac{w_F \cdot F(t) + w_{Rel} \cdot \text{Rel}(t) + w_S \cdot S(d)}{w_F + w_{Rel} + w_S}
+```
 
 **Family strength F(t)** — in [0, 1]:
 - Increases when family time fraction ≥ 10%: $\Delta F = r_F \cdot t_{\text{fam}}$
@@ -59,7 +67,9 @@ $$R(t) = \frac{w_F \cdot F(t) + w_{Rel} \cdot \text{Rel}(t) + w_S \cdot S(d)}{w_
 **Spatial density component S(d)** — in [0, 1]:
 A logistic-bell function of square footage per resident:
 
-$$S(d) = \text{logistic}(k(d - d_{\text{low}})) \cdot (1 - \text{logistic}(k(d - d_{\text{high}})))$$
+```math
+S(d) = \text{logistic}\bigl(k(d - d_{\text{low}})\bigr) \cdot \bigl(1 - \text{logistic}(k(d - d_{\text{high}}))\bigr)
+```
 
 with $d_{\text{low}} = 100$, $d_{\text{high}} = 400$, $k = 0.045$, normalized so peak = 1.0 at $d \approx 250$ sqft/resident.
 
@@ -69,7 +79,9 @@ This curve encodes the hypothesis of Jacobs (1961) and Alexander (1977) that wal
 
 The community faces a continuous hazard of collapse:
 
-$$h(t) = h_0 \cdot \exp\left(-\beta_W \cdot \log\frac{W(t)}{W_0}\right)$$
+```math
+h(t) = h_0 \cdot \exp\left(-\beta_W \cdot \log\frac{W(t)}{W_0}\right)
+```
 
 - $h_0 = 0.02$: baseline annual hazard (2% annual risk at $W = W_0$)
 - $\beta_W = 2.0$: wealth-protection coefficient
@@ -79,7 +91,9 @@ When $W > W_0$, hazard falls below $h_0$. When $W < W_0$, hazard exceeds $h_0$. 
 
 Cumulative survival:
 
-$$S(T) = \exp\left(-\int_0^T h(t)\, dt\right) \approx \exp\left(-\sum_t h(t) \cdot \Delta t\right)$$
+```math
+S(T) = \exp\left(-\int_0^T h(t)\, dt\right) \approx \exp\left(-\sum_t h(t) \cdot \Delta t\right)
+```
 
 ### Outcome Classification
 
@@ -89,7 +103,7 @@ At simulation end, each community (or path) is classified:
 |---------|-----------|
 | **Collapsed** | $W < \tau_c \cdot W_0$ for ≥ $N_{\text{rec}}$ consecutive periods |
 | **Grew** | $W(T) > W_0 \cdot (1 + \tau_g)$ |
-| **Stabilized** | $|W(T) - W_0| / W_0 \leq \tau_s$ |
+| **Stabilized** | $\lvert W(T) - W_0 \rvert / W_0 \leq \tau_s$ |
 | **Declined** | None of the above |
 
 Default thresholds: $\tau_c = 0.30$, $N_{\text{rec}} = 5$, $\tau_g = 0.20$, $\tau_s = 0.10$.
@@ -114,7 +128,9 @@ A society is a set of $N$ communities at 2D positions on a continuous plane, con
 
 ### 1. Trade — Gravity Model
 
-$$\text{Trade}_{ij}(t) = \kappa \cdot \frac{W_i(t) \cdot W_j(t)}{d_{ij}^2 + \varepsilon}$$
+```math
+\text{Trade}_{ij}(t) = \kappa \cdot \frac{W_i(t) \cdot W_j(t)}{d_{ij}^2 + \varepsilon}
+```
 
 This redistributes material capital: both communities $i$ and $j$ gain $\text{Trade}_{ij}(t) \cdot \Delta t$ added to their M. Trade is **positive-sum** — both benefit from exchange.
 
@@ -141,7 +157,9 @@ Society-level shocks use the same four topology types as single-community mode, 
 
 Each community's relational capital is slightly influenced by its neighbors:
 
-$$\Delta R_i^{\text{contagion}} = \alpha_c \cdot \left(\bar{R}_{\text{neighbors},i} - R_i\right) \cdot \Delta t \cdot 0.1$$
+```math
+\Delta R_i^{\text{contagion}} = \alpha_c \cdot \left(\bar{R}_{\text{neighbors},i} - R_i\right) \cdot \Delta t \cdot 0.1
+```
 
 High-R neighbors lift low-R communities; low-R neighbors pull down high-R communities. Strength $\alpha_c \in [0, 1]$ (default 0.3). The 0.1 dampening factor keeps the effect modest — it supplements, not overrides, the community's own internal dynamics.
 
